@@ -1,9 +1,17 @@
-<h1>Weather for: &nbsp; {{pgWeather.city.name }}, {{pgWeather.city.country}}</h1>
+<h1>Weather for: &nbsp; {{pgWeather?.city.name }}, {{pgWeather?.city.country}}</h1>
+
+
+<mat-form-field [formGroup]="form">
+  <mat-label>Select City</mat-label>
+  <mat-select name="city" formControlName="selectedCity"  >
+    <mat-option *ngFor="let city of cities " [value]="city.id">{{city?.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
 <div class="mat-elevation-z8">
 
 
-  <table mat-table [dataSource]="pgWeather.list" style="width: 100%;">
+  <table mat-table [dataSource]="pgWeather?.list" style="width: 100%;">
 
 
     <ng-container matColumnDef="date">
@@ -12,12 +20,12 @@
     </ng-container>
 
     <ng-container matColumnDef="weather">
-      <th mat-header-cell *matHeaderCellDef> Temperature </th>
+      <th mat-header-cell *matHeaderCellDef> Weather </th>
       <td mat-cell *matCellDef="let element"> {{element.weather[0].description}} </td>
     </ng-container>
 
     <ng-container matColumnDef="days">
-      <th mat-header-cell *matHeaderCellDef> days </th>
+      <th mat-header-cell *matHeaderCellDef> Temperature </th>
       <td mat-cell *matCellDef="let element"> {{element.main.temp}} </td>
     </ng-container>
 

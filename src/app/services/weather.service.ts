@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
 export class WeatherService {
   url = 'https://api.openweathermap.org/data/2.5/forecast?id=3189077&units=metric&APPID=e407025261332276e681a1d16d2b08c5';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getWeather() {
     return Promise.resolve([{city: 'Podgorica', temperature: 40, days: ['MON', 'THU']}]);
@@ -13,6 +14,15 @@ export class WeatherService {
 
   getRealWeatherPodgorica() {
     return this.http.get(this.url);
+  }
+
+  getCities() {
+    return this.http.get('/assets/city.list.json');
+  }
+
+  getRealWeatherByID(id) {
+    const url = 'https://api.openweathermap.org/data/2.5/forecast?id=' + id + '&units=metric&APPID=e407025261332276e681a1d16d2b08c5';
+    return this.http.get(url);
   }
 
 }
