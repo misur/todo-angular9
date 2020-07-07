@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {WeatherComponent} from './weather.component';
+import {WeatherComponent} from './weather/weather.component';
 import {ToDoComponent} from './to-do.component';
 
 

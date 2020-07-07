@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {WeatherService} from './services/weather.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {WeatherService} from '../services/weather.service';
 
 
 @Component({
   selector: 'app-root',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: '../weather/weather.component.html',
+  styleUrls: ['../app.component.css'],
   providers: [WeatherService]
 })
 export class WeatherComponent implements OnInit {

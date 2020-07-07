@@ -13,15 +13,25 @@ import {MatCardModule} from '@angular/material/card';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {ToDoComponent} from './to-do.component';
-import {WeatherComponent} from './weather.component';
+import {DialogContentExampleDialogComponent, ToDoComponent} from './to-do.component';
+import {WeatherComponent} from './weather/weather.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ToastrModule } from 'ngx-toastr';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {SidebarComponent} from './sidebar/sidebar.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoComponent,
-    WeatherComponent
+    WeatherComponent,
+    DialogContentExampleDialogComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,8 +48,14 @@ import {HttpClientModule} from '@angular/common/http';
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    ToastrModule.forRoot(),
+    MatCheckboxModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSortModule
   ],
-  providers: [],
+  providers: [MatSnackBar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
