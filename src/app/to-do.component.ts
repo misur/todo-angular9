@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ToDoService} from './to-do/to-do.service';
 
 
 export interface UserData {
@@ -21,20 +22,21 @@ export interface DialogData {
   description: string;
 }
 
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+// /** Constants used to fill up our data base. */
+// const COLORS: string[] = [
+//   'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
+//   'aqua', 'blue', 'navy', 'black', 'gray'
+// ];
+// const NAMES: string[] = [
+//   'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
+//   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
+// ];
 
 @Component({
   selector: 'app-root',
   templateUrl: './to-do.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ToDoService]
 })
 export class ToDoComponent implements OnInit {
   pageSize = 10;
@@ -49,11 +51,9 @@ export class ToDoComponent implements OnInit {
   dataSource: MatTableDataSource<UserData>;
 
 
-  constructor(public dialog: MatDialog, private toastr: ToastrService, private _snackbar: MatSnackBar) {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  constructor(public dialog: MatDialog, private toastr: ToastrService, private _snackbar: MatSnackBar, private todoService: ToDoService) {
+    const users = todoService.getList();
 
-    // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
   }
 
@@ -113,21 +113,6 @@ export class ToDoComponent implements OnInit {
     this._snackbar.open('Completed',
       row.description, {duration: 2000});
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))],
-    description: 'test',
-    complete: false
-  };
 }
 
 @Component({

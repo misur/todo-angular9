@@ -24,6 +24,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { MatSortModule } from '@angular/material/sort';
+import {SidebarItemComponent} from './sidebar/sidebar-item.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatSortModule } from '@angular/material/sort';
     WeatherComponent,
     DialogContentExampleDialogComponent,
     SidebarComponent,
+    SidebarItemComponent
   ],
   imports: [
     BrowserModule,

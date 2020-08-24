@@ -3,9 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {UserData} from '../to-do.component';
 
 @Injectable()
-export class WeatherToDo {
+export class ToDoService {
+  users = [];
 
-   protected _COLORS: string[] = [
+  protected _COLORS: string[] = [
     'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
     'aqua', 'blue', 'navy', 'black', 'gray'
   ];
@@ -16,6 +17,7 @@ export class WeatherToDo {
 
 
   constructor(private http: HttpClient) {
+    this.users = Array.from({length: 100}, (_, k) => this.createNewUser(k + 1));
   }
 
 
@@ -26,6 +28,7 @@ export class WeatherToDo {
   set COLORS(value: string[]) {
     this._COLORS = value;
   }
+
   get NAMES(): string[] {
     return this._NAMES;
   }
@@ -34,14 +37,17 @@ export class WeatherToDo {
     this._NAMES = value;
   }
 
-  getList(){
+  getList() {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => this.createNewUser(k + 1));
+    return this.users;
+  }
+
+  getNumberOfCompletedTasks() {
+    return this.users.filter(value =>  value.progress > 80).length;
   }
 
 
-
-   createNewUser(id: number): UserData {
+  createNewUser(id: number): UserData {
     const name = this.NAMES[Math.round(Math.random() * (this.NAMES.length - 1))] + ' ' +
       this.NAMES[Math.round(Math.random() * (this.NAMES.length - 1))].charAt(0) + '.';
 
