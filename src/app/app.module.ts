@@ -25,6 +25,7 @@ import {MatListModule} from '@angular/material/list';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import { MatSortModule } from '@angular/material/sort';
 import {SidebarItemComponent} from './sidebar/sidebar-item.component';
+import {AddNewTaskComponent} from './to-do/add-new-task.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {SidebarItemComponent} from './sidebar/sidebar-item.component';
     WeatherComponent,
     DialogContentExampleDialogComponent,
     SidebarComponent,
-    SidebarItemComponent
+    SidebarItemComponent,
+    AddNewTaskComponent
   ],
   imports: [
     BrowserModule,
